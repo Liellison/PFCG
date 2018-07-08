@@ -22,7 +22,7 @@ int main(int argc, char** argv){
     glutCreateWindow("Labirinto Magico de Liellison");
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
-    glClearColor(0, 0, 0, 1);
+    glClearColor(1, 1, 1, 1);
     glutMainLoop();
     
     return 0;
@@ -38,14 +38,12 @@ void display(){
     glBegin(GL_QUADS);
         glVertex2i(0, 50);
         glVertex2i(0, 30);
-        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex2i(384,30);
         glVertex2i(384,50);
     glEnd();
     glBegin(GL_QUADS);
         glVertex2i(404, 50);
         glVertex2i(404, 30);
-        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex2i(512,30);
         glVertex2i(512,50);
     glEnd();
@@ -53,7 +51,6 @@ void display(){
     glBegin(GL_QUADS);
         glVertex2i(0, 512);
         glVertex2i(0, 50);
-        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex2i(20,50);
         glVertex2i(20,512);
     glEnd();
@@ -61,7 +58,6 @@ void display(){
     glBegin(GL_QUADS);
         glVertex2i(492, 512);
         glVertex2i(492, 50);
-        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex2i(512,50);
         glVertex2i(5122,512);
     glEnd();
@@ -69,14 +65,26 @@ void display(){
     glBegin(GL_QUADS);
         glVertex2i(0, 512);
         glVertex2i(0, 492);
-        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex2i(512,492);
         glVertex2i(512,512);
     glEnd();
+    //Objeto
+    glBegin(GL_QUADS);
+        glColor3f(0.0f, 1.0f, 0.0f);
+        glVertex2i(385, 29);
+        //glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex2i(385, 12);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glVertex2i(405, 12);
+        glVertex2i(405, 29);
+    glEnd();
     //Ponto Final
     glBegin(GL_TRIANGLES);
+        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex2f(462, 472);
+        glColor3f(0.0f, 1.0f, 0.0f);
         glVertex2f(472, 490);
+        glColor3f(1.0f, 0.0f, 0.0f);
         glVertex2f(482, 472);
     glEnd();
     glFlush();
