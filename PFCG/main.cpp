@@ -73,6 +73,12 @@ void display(){
         glVertex2i(512,492);
         glVertex2i(512,512);
     glEnd();
+    //Ponto Final
+    glBegin(GL_TRIANGLES);
+        glVertex2f(462, 472);
+        glVertex2f(472, 490);
+        glVertex2f(482, 472);
+    glEnd();
     glFlush();
 }
 
