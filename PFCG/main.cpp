@@ -14,18 +14,27 @@
 void display(void);
 void reshape(int, int);
 GLfloat xf, yf, win;
+int eixoy, eixox;
 
-int main(int argc, char** argv){
-    glutInit(&argc, argv);
-    glutInitWindowSize(512, 512);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-    glutCreateWindow("Labirinto Magico de Liellison");
-    glutDisplayFunc(display);
-    glutReshapeFunc(reshape);
-    glClearColor(1, 1, 1, 1);
-    glutMainLoop();
-    
-    return 0;
+void teclado(unsigned char key, int x, int y){
+    switch (key) {
+        case 'y':
+            eixoy = (eixoy+5)%360;
+            glutPostRedisplay();
+            break;
+        case 'Y':
+            eixoy = (eixoy-5)%360;
+            glutPostRedisplay();
+            break;
+        case 'x':
+            eixox = (eixox+5)%360;
+            glutPostRedisplay();
+            break;
+        case 'X':
+            eixox = (eixox-5)%360;
+            glutPostRedisplay();
+            break;
+    }
 }
 
 void display(){
@@ -69,6 +78,9 @@ void display(){
         glVertex2i(512,512);
     glEnd();
     //Objeto
+    glPushMatrix();
+    glRotatef((GLfloat) eixox, 1.0, 0.0, 0.0);
+    glRotatef((GLfloat) eixoy, 0.0, 1.0, 0.0);
     glBegin(GL_QUADS);
         glColor3f(0.0f, 1.0f, 0.0f);
         glVertex2i(385, 29);
@@ -78,6 +90,7 @@ void display(){
         glVertex2i(405, 12);
         glVertex2i(405, 29);
     glEnd();
+    glPopMatrix();
     //Ponto Final
     glBegin(GL_TRIANGLES);
         glColor3f(0.0f, 0.0f, 1.0f);
@@ -98,4 +111,17 @@ void reshape(int width, int height){
     gluOrtho2D(0,width,0,height);
     
     glMatrixMode(GL_MODELVIEW);
+}
+int main(int argc, char** argv){
+    glutInit(&argc, argv);
+    glutInitWindowSize(512, 512);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+    glutCreateWindow("Labirinto Magico de Liellison");
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutKeyboardFunc(teclado);
+    glClearColor(1, 1, 1, 1);
+    glutMainLoop();
+    
+    return 0;
 }
