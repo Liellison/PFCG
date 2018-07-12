@@ -22,20 +22,20 @@ void teclado(unsigned char key, int x, int y){
         case 27:
             exit(0);
             break;
-        case 'y':
-            eixoy = (eixoy + 1) % 512;
+        case 'w':
+            eixoy = (eixoy + 5) % 500;
             glutPostRedisplay();
             break;
-        case 'Y':
-            eixoy = (eixoy - 1) % 512;
+        case 's':
+            eixoy = (eixoy - 5) % 500;
             glutPostRedisplay();
             break;
-        case 'x':
-            eixox = (eixox + 1) % 512;
+        case 'd':
+            eixox = (eixox + 5) % 500;
             glutPostRedisplay();
             break;
-        case 'X':
-            eixox = (eixox - 1) % 512;
+        case 'a':
+            eixox = (eixox - 5) % 500;
             glutPostRedisplay();
             break;
         case 'o':
@@ -67,10 +67,10 @@ void display(){
     
     //Parede de entrada
     glBegin(GL_QUADS);
-        glVertex2i(0, 50);
-        glVertex2i(0, 30);
-        glVertex2i(384,30);
-        glVertex2i(384,50);
+        glVertex3i(0, 30, 0);
+        glVertex3i(0, 50, 0);
+        glVertex3i(384,50, 0);
+        glVertex3i(384, 30, 0);
     glEnd();
     glBegin(GL_QUADS);
         glVertex2i(404, 50);
