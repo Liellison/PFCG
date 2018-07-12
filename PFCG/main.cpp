@@ -73,31 +73,31 @@ void display(){
         glVertex3i(384, 30, 0);
     glEnd();
     glBegin(GL_QUADS);
-        glVertex2i(404, 50);
-        glVertex2i(404, 30);
-        glVertex2i(512,30);
-        glVertex2i(512,50);
+        glVertex3i(404, 30,0);
+        glVertex3i(404, 50,0);
+        glVertex3i(512,50,0);
+        glVertex3i(512,30,0);
     glEnd();
     //Parede esquerda
     glBegin(GL_QUADS);
-        glVertex2i(0, 512);
-        glVertex2i(0, 50);
-        glVertex2i(20,50);
-        glVertex2i(20,512);
+        glVertex3i(0, 50,0);
+        glVertex3i(0, 512,0);
+        glVertex3i(20,512,0);
+        glVertex3i(20,50,0);
     glEnd();
     //Parede direita
     glBegin(GL_QUADS);
-        glVertex2i(492, 512);
-        glVertex2i(492, 50);
-        glVertex2i(512,50);
-        glVertex2i(5122,512);
+        glVertex3i(492, 50,0);
+        glVertex3i(492, 512,0);
+        glVertex3i(5122,512,0);
+        glVertex3i(512,50,0);
     glEnd();
     //Parede de cima
     glBegin(GL_QUADS);
-        glVertex2i(0, 512);
-        glVertex2i(0, 492);
-        glVertex2i(512,492);
-        glVertex2i(512,512);
+        glVertex3i(0, 492,0);
+        glVertex3i(0, 512,0);
+        glVertex3i(512,512,0);
+        glVertex3i(512,492,0);
     glEnd();
     //Objeto
     glPushMatrix();
@@ -105,28 +105,21 @@ void display(){
     glTranslatef((GLfloat) 0, eixoy, 0);
     glBegin(GL_QUADS);
         glColor3f(0.0f, 1.0f, 0.0f);
-        glVertex2i(385, 29);
-        //glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex2i(385, 12);
+        glVertex3i(385, 12,0);
+        glVertex3i(385, 29,0);
         glColor3f(0.0f, 0.0f, 0.0f);
-        glVertex2i(405, 12);
-        glVertex2i(405, 29);
+        glVertex3i(405, 29,0);
+        glVertex3i(405, 12,0);
     glEnd();
     glPopMatrix();
     //Ponto Final
     glBegin(GL_TRIANGLES);
         glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex2f(462, 472);
+        glVertex3f(462, 472,0);
         glColor3f(0.0f, 1.0f, 0.0f);
-        glVertex2f(472, 490);
+        glVertex3f(472, 490,0);
         glColor3f(1.0f, 0.0f, 0.0f);
-        glVertex2f(482, 472);
-    glEnd();
-    glBegin(GL_POLYGON);
-        glVertex3f(-0.25,0.25,0.25);
-        glVertex3f(-0.75,0.25,0.25);
-        glVertex3f(-0.75,0.75,0.25);
-        glVertex3f(-0.25,0.75,0.25);
+        glVertex3f(482, 472,0);
     glEnd();
     glFlush();
 }
