@@ -11,31 +11,53 @@
 #include <OpenGl/glu.h>
 #include <GLUT/glut.h>
 
-void display(void);
-void reshape(int, int);
-GLfloat xf, yf, win;
 int eixoy, eixox;
+int largura, altura;
+GLfloat xf, yf, win;
+
+void display(void);
 
 void teclado(unsigned char key, int x, int y){
     switch (key) {
+        case 27:
+            exit(0);
+            break;
         case 'y':
-            eixoy = (eixoy+5)%360;
+            eixoy = (eixoy + 1) % 512;
             glutPostRedisplay();
             break;
         case 'Y':
-            eixoy = (eixoy-5)%360;
+            eixoy = (eixoy - 1) % 512;
             glutPostRedisplay();
             break;
         case 'x':
-            eixox = (eixox+5)%360;
+            eixox = (eixox + 1) % 512;
             glutPostRedisplay();
             break;
         case 'X':
-            eixox = (eixox-5)%360;
+            eixox = (eixox - 1) % 512;
+            glutPostRedisplay();
+            break;
+        case 'o':
+            glLoadIdentity();
+            glOrtho (-5, 5, -5, 5, -5 , 5);
+            glutPostRedisplay();
+            break;
+        case 'r':
+            glLoadIdentity();
+            glOrtho (-5, 5, -5, 5, -5 , 5);
+            eixox = 0;
+            eixoy = 0;
             glutPostRedisplay();
             break;
     }
 }
+
+void init(void){
+    glClearColor(1.0, 1.0, 1.0, 0.0);
+    glOrtho (-5, 5, -5, 5, -5, 5);
+}
+
 
 void display(){
     glMatrixMode(GL_MODELVIEW);
@@ -79,8 +101,8 @@ void display(){
     glEnd();
     //Objeto
     glPushMatrix();
-    glRotatef((GLfloat) eixox, 1.0, 0.0, 0.0);
-    glRotatef((GLfloat) eixoy, 0.0, 1.0, 0.0);
+    glTranslatef((GLfloat) eixox, 0, 0);
+    glTranslatef((GLfloat) 0, eixoy, 0);
     glBegin(GL_QUADS);
         glColor3f(0.0f, 1.0f, 0.0f);
         glVertex2i(385, 29);
@@ -100,6 +122,12 @@ void display(){
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex2f(482, 472);
     glEnd();
+    glBegin(GL_POLYGON);
+        glVertex3f(-0.25,0.25,0.25);
+        glVertex3f(-0.75,0.25,0.25);
+        glVertex3f(-0.75,0.75,0.25);
+        glVertex3f(-0.25,0.75,0.25);
+    glEnd();
     glFlush();
 }
 
@@ -115,7 +143,7 @@ void reshape(int width, int height){
 int main(int argc, char** argv){
     glutInit(&argc, argv);
     glutInitWindowSize(512, 512);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
     glutCreateWindow("Labirinto Magico de Liellison");
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
