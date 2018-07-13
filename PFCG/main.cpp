@@ -23,27 +23,45 @@ void teclado(unsigned char key, int x, int y){
             exit(0);
             break;
         case 'w':
+            eixoy = (eixoy + 2) % 500;
+            glutPostRedisplay();
+            break;
+        case 'W':
             eixoy = (eixoy + 5) % 500;
             glutPostRedisplay();
             break;
         case 's':
+            eixoy = (eixoy - 2) % 500;
+            glutPostRedisplay();
+            break;
+        case 'S':
             eixoy = (eixoy - 5) % 500;
             glutPostRedisplay();
             break;
         case 'd':
+            eixox = (eixox + 2) % 500;
+            glutPostRedisplay();
+            break;
+        case 'D':
             eixox = (eixox + 5) % 500;
             glutPostRedisplay();
             break;
         case 'a':
+            eixox = (eixox - 2) % 500;
+            glutPostRedisplay();
+            break;
+        case 'A':
             eixox = (eixox - 5) % 500;
             glutPostRedisplay();
             break;
-        case 'o':
+        case 'r':
             glLoadIdentity();
             glOrtho (-5, 5, -5, 5, -5 , 5);
+            eixox = 0;
+            eixoy = 0;
             glutPostRedisplay();
             break;
-        case 'r':
+        case 'R':
             glLoadIdentity();
             glOrtho (-5, 5, -5, 5, -5 , 5);
             eixox = 0;
@@ -98,6 +116,49 @@ void display(){
         glVertex3i(0, 512,0);
         glVertex3i(512,512,0);
         glVertex3i(512,492,0);
+    glEnd();
+    //Dentro
+    glBegin(GL_QUADS);
+        glVertex3i(60, 450,0);
+        glVertex3i(60, 470,0);
+        glVertex3i(500,470,0);
+        glVertex3i(500,450,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3i(60, 380,0);
+        glVertex3i(60, 450,0);
+        glVertex3i(80,450,0);
+        glVertex3i(80,380,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3i(430, 150, 0);
+        glVertex3i(430, 360, 0);
+        glVertex3i(450, 360, 0);
+        glVertex3i(450, 150, 0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3i(130, 151, 0);
+        glVertex3i(130, 171, 0);
+        glVertex3i(380, 171, 0);
+        glVertex3i(380, 151, 0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3i(110, 90, 0);
+        glVertex3i(110, 470, 0);
+        glVertex3i(130, 470, 0);
+        glVertex3i(130, 90, 0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3i(30, 70, 0);
+        glVertex3i(30, 360, 0);
+        glVertex3i(50, 360, 0);
+        glVertex3i(50, 70, 0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3i(70, 70, 0);
+        glVertex3i(70, 90, 0);
+        glVertex3i(450, 90, 0);
+        glVertex3i(450, 70, 0);
     glEnd();
     //Objeto
     glPushMatrix();
