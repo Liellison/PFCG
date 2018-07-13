@@ -11,7 +11,7 @@
 #include <OpenGl/glu.h>
 #include <GLUT/glut.h>
 
-int eixoy, eixox;
+int eixoy, eixox, eixoxx, eixoyy;
 int largura, altura;
 GLfloat xf, yf, win;
 
@@ -68,6 +68,30 @@ void teclado(unsigned char key, int x, int y){
             eixoy = 0;
             glutPostRedisplay();
             break;
+        //Mover a camera
+        case 'm':
+            eixoxx = (eixoxx + 5) % 200;
+            glutPostRedisplay();
+        break;
+        case 'n':
+            eixoyy = (eixoyy + 5) % 200;
+            glutPostRedisplay();
+        break;
+        case 'j':
+            eixoxx = (eixoxx - 5) % 200;
+            glutPostRedisplay();
+        break;
+        case 'h':
+            eixoyy = (eixoyy - 5) % 200;
+            glutPostRedisplay();
+           break;
+        case 'l':
+            glLoadIdentity();
+            glOrtho (-5, 5, -5, 5, -5 , 5);
+            eixoxx = 0;
+            eixoyy = 0;
+            glutPostRedisplay();
+        break;
     }
 }
 
@@ -83,6 +107,9 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0f, 0.0f, 0.0f);
     
+    glPushMatrix();
+    glRotatef ((GLfloat) eixoxx, 1.0, 0.0, 0.0);
+    glRotatef ((GLfloat) eixoyy, 0.0, 1.0, 0.0);
     //Parede de entrada
     glBegin(GL_QUADS);
         glVertex3i(0, 30, 0);
@@ -182,6 +209,7 @@ void display(){
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(482, 472,0);
     glEnd();
+    glPopMatrix();
     glFlush();
 }
 
